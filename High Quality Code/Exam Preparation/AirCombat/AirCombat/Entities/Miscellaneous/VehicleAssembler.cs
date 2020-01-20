@@ -29,32 +29,32 @@
                                 => this.enduranceParts.ToList().AsReadOnly();
 
         public double TotalWeight
-                         => this.ArsenalParts.Max(p => p.Weight) +
-                            this.ShellParts.Max(p => p.Weight) +
-                            this.EnduranceParts.Max(p => p.Weight);
+                         => this.ArsenalParts.Sum(p => p.Weight) +
+                            this.ShellParts.Sum(p => p.Weight) +
+                            this.EnduranceParts.Sum(p => p.Weight);
 
         public decimal TotalPrice
-                         => this.ArsenalParts.Max(p => p.Price) +
-                            this.ShellParts.Max(p => p.Price) +
-                            this.EnduranceParts.Max(p => p.Price);
+                         => this.ArsenalParts.Sum(p => p.Price) +
+                            this.ShellParts.Sum(p => p.Price) +
+                            this.EnduranceParts.Sum(p => p.Price);
 
         public long TotalAttackModification
-             => this.ArsenalParts.Max(p => p.AttackModifier);
+             => this.ArsenalParts.Sum(p => p.AttackModifier);
 
         public long TotalDefenseModification
-             => this.ShellParts.Max(p => p.DefenseModifier);
+             => this.ShellParts.Sum(p => p.DefenseModifier);
 
         public long TotalHitPointModification
-             => this.ShellParts.Max(p => p.DefenseModifier);
+             => this.ShellParts.Sum(p => p.DefenseModifier);
 
         public void AddArsenalPart(IPart arsenalPart)
         {
-            this.arsenalParts.Add(null);
+            this.arsenalParts.Add((IAttackModifyingPart)arsenalPart);
         }
 
         public void AddShellPart(IPart shellPart)
         {
-            this.shellParts.Add(null);
+            this.shellParts.Add((IDefenseModifyingPart)shellPart);
         }
 
         public void AddEndurancePart(IPart endurancePart)

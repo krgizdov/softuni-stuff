@@ -11,6 +11,11 @@
 
     using AirCombat.Entities.Parts.Factories.Contracts;
     using AirCombat.Entities.AirCrafts.Factories.Contracts;
+    using AirCombat.Entities.Parts;
+    using AirCombat.Entities.Parts.Factories;
+    using AirCombat.Entities.AirCrafts.Factories;
+    using AirCombat.Entities.AirCrafts;
+    using AirCombat.Entities.Miscellaneous;
 
     public class Manager : IManager
     {
@@ -18,14 +23,15 @@
         private readonly IDictionary<string, IPart> parts;
         private readonly IList<string> defeatedAircrafts;
         private readonly IBattleOperator battleOperator;
-
-        //hmmm
         private readonly IAirCraftFactory aircraftFactory;
         private readonly IPartFactory partFactory;
 
         public Manager(IBattleOperator battleOperator)
         {
             this.battleOperator = battleOperator;
+
+            this.aircraftFactory = new AirCraftFactory();
+            this.partFactory = new PartFactory();
 
             this.aircrafts = new Dictionary<string, IAirCraft>();
             this.parts = new Dictionary<string, IPart>();
@@ -42,17 +48,8 @@
             int defense = int.Parse(arguments[5]);
             int hitPoints = int.Parse(arguments[6]);
 
-            IAirCraft aircraft = null;
-
-            switch (aircraftType)
-            {
-                case "Bastilon":
-                    //aircraft = new Bastilon(model, weight, price, attack, defense, hitPoints, new AirCraftAssembler());
-                    break;
-                case "Enforcer":
-                    //    aircraft = new Enforcer(model, weight, price, attack, defense, hitPoints, new AirCraftAssembler());
-                    break;
-            }
+            IAirCraft aircraft = this.aircraftFactory
+                .CreateAirCraft(aircraftType, model, weight, price, attack, defense, hitPoints);
 
             if (aircraft != null)
             {
@@ -74,20 +71,17 @@
             decimal price = decimal.Parse(arguments[4]);
             int additionalParameter = int.Parse(arguments[5]);
 
-            IPart part = null;
+            IPart part = this.partFactory.CreatePart(partType, model, weight, price, additionalParameter);
 
             switch (partType)
             {
                 case "Arsenal":
-                    part = new ArsenalPart(model, weight, price, additionalParameter);
                     this.aircrafts[aircraftModel].AddArsenalPart(part);
                     break;
                 case "Shell":
-                    var shellPart = new ShellPart();
                     this.aircrafts[aircraftModel].AddShellPart(part);
                     break;
                 case "Endurance":
-                    part = new EndurancePart(model, weight, price, additionalParameter);
                     this.aircrafts[aircraftModel].AddEndurancePart(part);
                     break;
             }

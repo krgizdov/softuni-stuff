@@ -1,7 +1,8 @@
 ﻿namespace AirCombat.Core
 {
     using System;
-
+    using System.Linq;
+    using AirCombat.Utils;
     using Contracts;
     using IO.Contracts;
 
@@ -26,7 +27,23 @@
 
         public void Run()
         {
-            throw new NotImplementedException();
+            this.isRunning = true;
+
+            while (this.isRunning)
+            {
+                var line = this.reader.ReadLine();
+                var cmds = line.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
+                var commandName = cmds[0];
+                var result = this.commandInterpreter.ProcessInput(cmds);
+                this.writer.WriteLine(result);
+
+                if (commandName == GlobalConstants.TerminateCommand)
+                {
+                    this.isRunning = false;
+                }
+
+
+            }
         }
     }
 }

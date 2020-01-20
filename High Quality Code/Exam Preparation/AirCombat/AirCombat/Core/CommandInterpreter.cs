@@ -22,11 +22,11 @@
 
             switch (command)
             {
-                case "Aircraft":
+                case "AirCraft":
                     result = this.aircraftManager.AddAircraft(inputParameters);
                     break;
                 case "Part":
-                    result = this.aircraftManager.AddAircraft(inputParameters);
+                    result = this.aircraftManager.AddPart(inputParameters);
                     break;
                 case "Inspect":
                     result = this.aircraftManager.Inspect(inputParameters);
