@@ -1,7 +1,6 @@
 ﻿namespace AirCombat.Entities.Parts
 {
     using System;
-
     using Contracts;
 
     public abstract class Part : IPart
@@ -10,18 +9,12 @@
         private double weight;
         private decimal price;
 
-        public Part(string type, string model, double weight, decimal price, int modifier)
+        public Part(string model, double weight, decimal price)
         {
             this.Model = model;
             this.Weight = weight;
             this.Price = price;
-            this.Type = type;
-            this.Modifier = modifier;
         }
-
-        public string Type { get; private set; }
-
-        public int Modifier { get; private set; }
 
         public string Model
         {
@@ -74,25 +67,12 @@
             }
         }
 
-        //public override string ToString()
-        //{
-        //    string partName = this.GetType().Name.Replace("Part", "");
-        //    string result = $"{partName} Part - {this.Model}";
+        public override string ToString()
+        {
+            string partName = this.GetType().Name.Replace("Part", "");
+            string result = $"{partName} Part - {this.Model}";
 
-        //    if (this.Type == "ArsenalPart")
-        //    {
-        //        result += $"+{this.Modifier} Attack";
-        //    }
-        //    else if (this.Type == "EndurancePart")
-        //    {
-        //        result += $"+{this.Modifier} HitPoints";
-        //    }
-        //    else if (this.Type == "ShellPart")
-        //    {
-        //        result += $"+{this.Modifier} Defense";
-        //    }
-
-        //    return result;
-        //}
+            return result;
+        }
     }
 }
