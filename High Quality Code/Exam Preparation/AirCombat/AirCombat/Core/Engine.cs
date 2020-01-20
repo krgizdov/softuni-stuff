@@ -36,8 +36,9 @@
                 var cmds = line.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
                 var commandName = cmds[0];
                 var result = this.commandInterpreter.ProcessInput(cmds);
-                //this.writer.WriteLine(result);
+
                 builder.AppendLine(result);
+
                 if (commandName == GlobalConstants.TerminateCommand)
                 {
                     this.isRunning = false;

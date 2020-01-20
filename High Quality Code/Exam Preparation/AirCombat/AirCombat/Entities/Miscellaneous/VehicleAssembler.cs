@@ -45,7 +45,7 @@
              => this.ShellParts.Sum(p => p.DefenseModifier);
 
         public long TotalHitPointModification
-             => this.ShellParts.Sum(p => p.DefenseModifier);
+             => this.EnduranceParts.Sum(p => p.HitPointsModifier);
 
         public void AddArsenalPart(IPart arsenalPart)
         {

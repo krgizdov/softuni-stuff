@@ -72,7 +72,7 @@
             int additionalParameter = int.Parse(arguments[5]);
 
             IPart part = this.partFactory.CreatePart(partType, model, weight, price, additionalParameter);
-
+            this.parts[partType] = part;
             switch (partType)
             {
                 case "Arsenal":
