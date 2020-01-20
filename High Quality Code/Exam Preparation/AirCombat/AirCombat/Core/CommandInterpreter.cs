@@ -18,8 +18,14 @@
             string command = inputParameters[0];
             inputParameters.RemoveAt(0);
 
-            string result = string.Empty;
+            /*
+            Tried to create a ProcessHandling Class 
+            ProcessHandler testing = new ProcessHandler(inputParameters, this.aircraftManager);
+            string result = testing.HandleCommand(command);
+            */
 
+            //Processing the command using a switch statement.
+            string result = string.Empty;
             switch (command)
             {
                 case "AirCraft":
