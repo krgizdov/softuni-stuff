@@ -1,6 +1,7 @@
 ﻿namespace AirCombat.Core
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using AirCombat.Utils;
@@ -29,22 +30,25 @@
         public void Run()
         {
             this.isRunning = true;
-            StringBuilder builder = new StringBuilder();
+            //StringBuilder builder = new StringBuilder();
+
+            var commands = new List<GameCommand>();
+
             while (this.isRunning)
             {
                 var line = this.reader.ReadLine();
                 var cmds = line.Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
                 var commandName = cmds[0];
-                var result = this.commandInterpreter.ProcessInput(cmds);
+                var command = new GameCommand(this.commandInterpreter, cmds);
 
-                builder.AppendLine(result);
+                commands.Add(command);
 
                 if (commandName == GlobalConstants.TerminateCommand)
                 {
                     this.isRunning = false;
-                    this.writer.WriteLine(builder.ToString());
                 }
             }
+            commands.ForEach(c => Console.WriteLine(c.Execute()));
         }
     }
 }
