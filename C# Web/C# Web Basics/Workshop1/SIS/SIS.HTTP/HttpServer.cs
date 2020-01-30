@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -9,10 +11,14 @@ namespace SIS.HTTP
     public class HttpServer : IHttpServer
     {
         private readonly TcpListener tcpListener;
+        private readonly List<Route> routeTable;
+        private readonly IDictionary<string, IDictionary<string, string>> sessions;
 
-        public HttpServer(int port)
+        public HttpServer(int port, List<Route> routeTable)
         {
             this.tcpListener = new TcpListener(IPAddress.Loopback, port);
+            this.routeTable = routeTable;
+            this.sessions = new Dictionary<string, IDictionary<string, string>>();
         }
 
         public async Task ResetAsync()
@@ -46,30 +52,46 @@ namespace SIS.HTTP
                 int bytesRead = await networkStream.ReadAsync(requestBytes, 0, requestBytes.Length);
                 string requestAsString = Encoding.UTF8.GetString(requestBytes, 0, bytesRead);
                 var request = new HttpRequest(requestAsString);
-                string content = "<h1>random page</h1>";
-                if (request.Path == "/")
+                string newSessionId = null; 
+                var sessionCookie = request.Cookies.FirstOrDefault(c => c.Name == HttpConstants.SessionIdCookieName);
+                if (sessionCookie != null && this.sessions.ContainsKey(sessionCookie.Value))
                 {
-                    content = "<h1>home page</h1>";
+                    request.SessionData = this.sessions[sessionCookie.Value];
                 }
-                else if (request.Path == "/users/login")
+                else
                 {
-                    content = "<h1>login page</h1>";
+                    newSessionId = Guid.NewGuid().ToString();
+                    var dictionary = new Dictionary<string, string>();
+                    this.sessions.Add(newSessionId, dictionary);
+                    request.SessionData = dictionary;
                 }
 
-                byte[] stringContent = Encoding.UTF8.GetBytes(content);
-                var response = new HttpResponse(HttpResponseCode.Ok, stringContent);
+                Console.WriteLine($"{request.Method} {request.Path}");
+                var route = this.routeTable.FirstOrDefault(
+                    r => r.Path == request.Path && r.HttpMethod == request.Method);
+                HttpResponse response;
+                if (route == null)
+                {
+                    response = new HttpResponse(HttpResponseCode.NotFound, new byte[0]);
+                }
+                else
+                {
+                    response = route.Action(request);
+                }
+
                 response.Headers.Add(new Header("Server", "SoftUniServer/1.0"));
-                response.Headers.Add(new Header("Content-Type", "text/html"));
-                response.Cookies.Add(
-                    new ResponseCookie("sid", Guid.NewGuid().ToString())
-                    { HttpOnly = true, MaxAge = 3600 });
+
+                if (newSessionId != null)
+                {
+                    response.Cookies.Add(new ResponseCookie(HttpConstants.SessionIdCookieName, newSessionId)
+                        { HttpOnly = true, MaxAge = 30*3600 });
+                }
+
+
 
                 byte[] responseBytes = Encoding.UTF8.GetBytes(response.ToString());
                 await networkStream.WriteAsync(responseBytes, 0, responseBytes.Length);
                 await networkStream.WriteAsync(response.Body, 0, response.Body.Length);
-
-                Console.WriteLine(request.ToString());
-                Console.WriteLine(new string('=', 60));
             }
             catch (Exception ex)
             {
@@ -83,7 +105,7 @@ namespace SIS.HTTP
                 await networkStream.WriteAsync(errorResponseBytes, 0, errorResponseBytes.Length);
                 await networkStream.WriteAsync(errorResponse.Body, 0, errorResponse.Body.Length);
             }
-            
+
         }
     }
 }
