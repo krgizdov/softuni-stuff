@@ -3,6 +3,7 @@ using SIS.HTTP.Response;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,11 +13,12 @@ namespace DemoApp
     {
         static async Task Main(string[] args)
         {
+            var db = new ApplicationDbContext();
+            db.Database.EnsureCreated();
+
             var routeTable = new List<Route>();
             routeTable.Add(new Route(HttpMethodType.Get, "/", Index));
-            routeTable.Add(new Route(HttpMethodType.Get, "/users/login", Login));
-            routeTable.Add(new Route(HttpMethodType.Post, "/users/login", DoLogin));
-            routeTable.Add(new Route(HttpMethodType.Get, "/contact", Contact));
+            routeTable.Add(new Route(HttpMethodType.Post, "/Tweets/Create", CreateTweet));
             routeTable.Add(new Route(HttpMethodType.Get, "/favicon.ico", FavIcon));
 
             var httpServer = new HttpServer(80, routeTable);
@@ -29,22 +31,40 @@ namespace DemoApp
             return new FileResponse(byteContent, "image/x-icon");
         }
 
-        public static HttpResponse Contact(HttpRequest request)
-        {
-            return new HtmlResponse("<h1>contact page</h1>");
-        }
-
         public static HttpResponse Index(HttpRequest request)
         {
-            return new HtmlResponse("<h1>home page</h1>");
+            StringBuilder html = new StringBuilder();
+            var db = new ApplicationDbContext();
+            var tweets = db.Tweets.Select(t => new
+            {
+                t.CreatedOn,
+                t.Creator,
+                t.Content
+            }).ToList();
+
+            html.Append("<table><tr><th>Date</th><th>Creator</th><th>Content</th></tr>");
+            foreach (var tweet in tweets)
+            {
+                html.Append($"<tr><td>{tweet.CreatedOn}</td><td>{tweet.Creator}</td><td>{tweet.Content}</td></tr>");
+            }
+            html.Append("</table>");
+            html.Append($"<form action='/Tweets/Create' method='post'><input name='creator' /><br /><textarea name='tweetName'></textarea><br /><input type='submit' /></form>");
+
+            return new HtmlResponse(html.ToString());
         }
-        public static HttpResponse Login(HttpRequest request)
+
+        public static HttpResponse CreateTweet(HttpRequest request)
         {
-            return new HtmlResponse("<h1>login page</h1>");
-        }
-        public static HttpResponse DoLogin(HttpRequest request)
-        {
-            return new HtmlResponse("<h1>login page form</h1>");
+            var db = new ApplicationDbContext();
+            db.Tweets.Add(new Tweet
+            {
+                CreatedOn = DateTime.UtcNow,
+                Creator = request.FormData["creator"],
+                Content = request.FormData["tweetName"]
+            });
+            db.SaveChanges();
+
+            return new RedirectResponse("/");
         }
     }
 }
