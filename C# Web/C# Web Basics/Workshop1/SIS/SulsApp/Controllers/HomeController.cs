@@ -2,6 +2,7 @@
 using SIS.HTTP.Response;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace SulsApp.Controllers
@@ -10,7 +11,10 @@ namespace SulsApp.Controllers
     {
         public HttpResponse Index(HttpRequest request)
         {
-            return new HtmlResponse("<h1>Hello World!</h1>");
+            var layout = File.ReadAllText("Views/Shared/_Layout.html");
+            var html = File.ReadAllText("Views/Home/Index.html");
+            var bodyWithLayout = layout.Replace("@RenderBody()", html);
+            return new HtmlResponse(bodyWithLayout);
         }
     }
 }
