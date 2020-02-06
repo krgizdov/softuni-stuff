@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SIS.HTTP.Response
 {
-    public class FileResponse:HttpResponse
+    public class FileResponse : HttpResponse
     {
         public FileResponse(byte[] fileContent, string contentType)
         {
