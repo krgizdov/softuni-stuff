@@ -52,7 +52,7 @@ namespace SIS.HTTP
                 int bytesRead = await networkStream.ReadAsync(requestBytes, 0, requestBytes.Length);
                 string requestAsString = Encoding.UTF8.GetString(requestBytes, 0, bytesRead);
                 var request = new HttpRequest(requestAsString);
-                string newSessionId = null; 
+                string newSessionId = null;
                 var sessionCookie = request.Cookies.FirstOrDefault(c => c.Name == HttpConstants.SessionIdCookieName);
                 if (sessionCookie != null && this.sessions.ContainsKey(sessionCookie.Value))
                 {
@@ -68,7 +68,7 @@ namespace SIS.HTTP
 
                 Console.WriteLine($"{request.Method} {request.Path}");
                 var route = this.routeTable.FirstOrDefault(
-                    r => r.Path == request.Path && r.HttpMethod == request.Method);
+                     r => r.HttpMethod == request.Method && string.Compare(r.Path, request.Path, true) == 0);
                 HttpResponse response;
                 if (route == null)
                 {
@@ -84,7 +84,7 @@ namespace SIS.HTTP
                 if (newSessionId != null)
                 {
                     response.Cookies.Add(new ResponseCookie(HttpConstants.SessionIdCookieName, newSessionId)
-                        { HttpOnly = true, MaxAge = 30*3600 });
+                    { HttpOnly = true, MaxAge = 30 * 3600 });
                 }
 
 
