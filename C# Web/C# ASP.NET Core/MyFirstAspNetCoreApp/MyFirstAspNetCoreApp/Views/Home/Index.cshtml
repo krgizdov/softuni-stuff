@@ -1,0 +1,16 @@
+﻿@model MyFirstAspNetCoreApp.ViewModels.Home.IndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <h2>@Model.Message</h2>
+        <p>@Model.Year</p>
+    </div>
+    <ul>
+        @foreach (var item in Model.Names)
+        {
+            <li>@item</li>
+        }
+    </ul>

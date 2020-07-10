@@ -18,21 +18,28 @@
 
         public void Add(TripAddInputModel tripAddInputModel)
         {
-            var date = DateTime.ParseExact(tripAddInputModel.DepartureTime,
+            try
+            {
+                var date = DateTime.ParseExact(tripAddInputModel.DepartureTime,
                 "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture);
 
-            var trip = new Trip()
-            {
-                StartPoint = tripAddInputModel.StartPoint,
-                EndPoint = tripAddInputModel.EndPoint,
-                DepartureTime = date,
-                ImagePath = tripAddInputModel.ImagePath,
-                Seats = tripAddInputModel.Seats,
-                Description = tripAddInputModel.Description
-            };
+                var trip = new Trip()
+                {
+                    StartPoint = tripAddInputModel.StartPoint,
+                    EndPoint = tripAddInputModel.EndPoint,
+                    DepartureTime = date,
+                    ImagePath = tripAddInputModel.ImagePath,
+                    Seats = tripAddInputModel.Seats,
+                    Description = tripAddInputModel.Description
+                };
 
-            this.db.Trips.Add(trip);
-            this.db.SaveChanges();
+                this.db.Trips.Add(trip);
+                this.db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                this.ErrorOccured = true;
+            }
         }
 
         public void AddUser(string userId, string tripId)
@@ -111,5 +118,7 @@
 
             return true;
         }
+
+        public bool ErrorOccured { get; private set; } = false;
     }
 }

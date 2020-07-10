@@ -95,7 +95,7 @@ namespace SIS.HTTP
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex);
                 var errorResponse = new HttpResponse(
                     HttpResponseCode.InternalServerError,
                     Encoding.UTF8.GetBytes(ex.ToString()));

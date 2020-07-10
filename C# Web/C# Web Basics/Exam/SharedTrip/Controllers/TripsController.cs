@@ -43,6 +43,10 @@
             {
                 return this.Redirect("/Users/Login");
             }
+            if (!this.tripsService.ErrorOccured)
+            {
+                return this.Redirect("/Trips/Add");
+            }
 
             this.tripsService.Add(tripAddInputModel);
 

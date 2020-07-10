@@ -17,5 +17,7 @@
         bool HasUserJoinedTrip(string userId, string tripId);
 
         bool HasFreeSeats(string tripId);
+
+        bool ErrorOccured { get; }
     }
 }
