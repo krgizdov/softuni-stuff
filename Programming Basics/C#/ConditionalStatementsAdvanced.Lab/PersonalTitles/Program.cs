@@ -25,6 +25,7 @@ namespace PersonalTitles
                 else
                     title = "Miss";
             }
+
             Console.WriteLine(title);
         }
     }

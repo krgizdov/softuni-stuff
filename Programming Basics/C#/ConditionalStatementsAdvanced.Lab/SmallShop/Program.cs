@@ -14,7 +14,6 @@ namespace SmallShop
 
             if (city == "Sofia")
             {
-
                 if (product == "coffee")
                     productPrice = 0.50;
                 else if (product == "water")
