@@ -93,17 +93,38 @@
             EnsureNotEmpty();
 
             var currentNode = _head;
-            var previousNode = _head;
+            T valueToReturn;
 
-            while (currentNode.Next != null)
+            if (currentNode.Next == null)
             {
-                previousNode = currentNode;
-                currentNode = currentNode.Next;
+                valueToReturn = currentNode.Value;
+                _head = null;
+            }
+            else
+            {
+                while (currentNode.Next.Next != null)
+                {
+                    currentNode = currentNode.Next;
+                }
+
+                valueToReturn = currentNode.Next.Value;
+
+                currentNode.Next = null;
             }
 
-            var valueToReturn = currentNode.Value;
+            #region Another way
+            //var previousNode = _head;
 
-            previousNode.Next = null;
+            //while (currentNode.Next != null)
+            //{
+            //    previousNode = currentNode;
+            //    currentNode = currentNode.Next;
+            //}
+
+            //var valueToReturn = currentNode.Value;
+
+            //previousNode.Next = null;
+            #endregion
 
             Count--;
 
