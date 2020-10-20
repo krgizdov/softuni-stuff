@@ -1,0 +1,59 @@
+html{
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: Georgia, serif;
+}
+
+.ul-container1{
+    list-style-type: square;
+}
+
+.ul-container2{
+    list-style-type: disc;
+}
+
+.ul-container3{
+    list-style-type: circle;
+}
+
+table{
+    table-layout: fixed;
+    width: 100%;
+}
+
+th{
+    background-color: darkgray;
+    border-width: 1px;
+    border-color: darkgray;
+    border-style: solid;
+}
+
+table, td{
+    border-width: 1px;
+    border-color: rgb(221, 221, 221);
+    border-style: solid;
+    border-collapse: collapse;
+}
+
+tr:nth-child(odd){
+    background: rgb(241, 241, 241);
+}
+
+tr:nth-child(odd) td{
+    background: rgb(241, 241, 241);
+}
+
+blockquote{
+    border-left: 4px solid rgb(221, 221, 221);
+    padding: 20px;
+    padding-top: 1px;
+    font-style: italic;
+}
+
+.writer{
+    text-align: right;
+}
