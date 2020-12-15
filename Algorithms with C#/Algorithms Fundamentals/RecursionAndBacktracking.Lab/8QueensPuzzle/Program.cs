@@ -5,7 +5,7 @@ namespace _8QueensPuzzle
 {
     class Program
     {
-        private static readonly HashSet<int> attackedRows = new HashSet<int>();
+        //private static readonly HashSet<int> attackedRows = new HashSet<int>();
         private static readonly HashSet<int> attackedCols = new HashSet<int>();
         private static readonly HashSet<int> attackedLeftDiagonals = new HashSet<int>();
         private static readonly HashSet<int> attackedRightDiagonals = new HashSet<int>();
@@ -41,7 +41,7 @@ namespace _8QueensPuzzle
         private static void SetQueenPosition(bool[,] board, int row, int col)
         {
             board[row, col] = true;
-            attackedRows.Add(row);
+            //attackedRows.Add(row);
             attackedCols.Add(col);
             attackedLeftDiagonals.Add(row - col);
             attackedRightDiagonals.Add(row + col);
@@ -50,7 +50,7 @@ namespace _8QueensPuzzle
         private static void RemoveQueenPosition(bool[,] board, int row, int col)
         {
             board[row, col] = false;
-            attackedRows.Remove(row);
+            //attackedRows.Remove(row);
             attackedCols.Remove(col);
             attackedLeftDiagonals.Remove(row - col);
             attackedRightDiagonals.Remove(row + col);
@@ -58,7 +58,7 @@ namespace _8QueensPuzzle
 
         private static bool IsAttacked(int row, int col)
         {
-            return attackedRows.Contains(row) ||
+            return /*attackedRows.Contains(row) ||*/
                 attackedCols.Contains(col) ||
                 attackedLeftDiagonals.Contains(row - col) ||
                 attackedRightDiagonals.Contains(row + col);
