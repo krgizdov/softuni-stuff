@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSet", "SuperSet\SuperSet.csproj", "{7F929E9B-C48B-4D53-9258-D8A83981F780}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paths", "Paths\Paths.csproj", "{06527E33-7658-4D86-B0F0-4940614F67C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Climbing", "Climbing\Climbing.csproj", "{907CE38C-783D-4761-A220-3B84BFFCBA0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F929E9B-C48B-4D53-9258-D8A83981F780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F929E9B-C48B-4D53-9258-D8A83981F780}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F929E9B-C48B-4D53-9258-D8A83981F780}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F929E9B-C48B-4D53-9258-D8A83981F780}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06527E33-7658-4D86-B0F0-4940614F67C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06527E33-7658-4D86-B0F0-4940614F67C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06527E33-7658-4D86-B0F0-4940614F67C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06527E33-7658-4D86-B0F0-4940614F67C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{907CE38C-783D-4761-A220-3B84BFFCBA0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{907CE38C-783D-4761-A220-3B84BFFCBA0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{907CE38C-783D-4761-A220-3B84BFFCBA0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{907CE38C-783D-4761-A220-3B84BFFCBA0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {81610548-D821-4F25-AD20-5B3B7837D7BC}
+	EndGlobalSection
+EndGlobal
