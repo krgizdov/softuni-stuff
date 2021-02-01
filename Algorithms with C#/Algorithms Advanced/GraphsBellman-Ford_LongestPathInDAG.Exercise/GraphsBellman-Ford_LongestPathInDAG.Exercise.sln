@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MostReliablePath", "MostReliablePath\MostReliablePath.csproj", "{9A0588AD-879A-444D-93DA-9CC728F9A07C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheapTownTour", "CheapTownTour\CheapTownTour.csproj", "{42377D56-EA29-4052-B47A-12E7DD935642}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Undefined", "Undefined\Undefined.csproj", "{70E967E4-7977-47AD-86F4-C15D5B1B6943}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigTrip", "BigTrip\BigTrip.csproj", "{E04D28ED-E691-49D3-8917-523B53157530}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CableNetwork", "CableNetwork\CableNetwork.csproj", "{B353DA73-59C4-4EE2-BA49-057E57D8EFDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheapTownTourKruskal", "CheapTownTourKruskal\CheapTownTourKruskal.csproj", "{60AFE493-10D0-470A-B70A-0253B1F98352}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9A0588AD-879A-444D-93DA-9CC728F9A07C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A0588AD-879A-444D-93DA-9CC728F9A07C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A0588AD-879A-444D-93DA-9CC728F9A07C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A0588AD-879A-444D-93DA-9CC728F9A07C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42377D56-EA29-4052-B47A-12E7DD935642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42377D56-EA29-4052-B47A-12E7DD935642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42377D56-EA29-4052-B47A-12E7DD935642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42377D56-EA29-4052-B47A-12E7DD935642}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E967E4-7977-47AD-86F4-C15D5B1B6943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E967E4-7977-47AD-86F4-C15D5B1B6943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E967E4-7977-47AD-86F4-C15D5B1B6943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E967E4-7977-47AD-86F4-C15D5B1B6943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E04D28ED-E691-49D3-8917-523B53157530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E04D28ED-E691-49D3-8917-523B53157530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E04D28ED-E691-49D3-8917-523B53157530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E04D28ED-E691-49D3-8917-523B53157530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B353DA73-59C4-4EE2-BA49-057E57D8EFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B353DA73-59C4-4EE2-BA49-057E57D8EFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B353DA73-59C4-4EE2-BA49-057E57D8EFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B353DA73-59C4-4EE2-BA49-057E57D8EFDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60AFE493-10D0-470A-B70A-0253B1F98352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60AFE493-10D0-470A-B70A-0253B1F98352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60AFE493-10D0-470A-B70A-0253B1F98352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60AFE493-10D0-470A-B70A-0253B1F98352}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7F5E1AC-E0B8-4A9A-A99C-D2C40E3CFB69}
+	EndGlobalSection
+EndGlobal
