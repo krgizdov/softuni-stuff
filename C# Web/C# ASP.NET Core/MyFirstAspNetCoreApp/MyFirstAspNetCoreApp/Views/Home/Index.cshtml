@@ -1,16 +1,42 @@
-﻿@model MyFirstAspNetCoreApp.ViewModels.Home.IndexViewModel
+﻿@using MyFirstAspNetCoreApp.Services
+@using MyFirstAspNetCoreApp.ViewModels.Home
+@inject IStringManipulation StringManipulation
+@model IndexViewModel
 @{
+    //Layout = "~/Views/Shared/_MyLayout.cshtml";
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <h2>@Model.Message</h2>
-        <p>@Model.Year</p>
-    </div>
-    <ul>
-        @foreach (var item in Model.Names)
-        {
-            <li>@item</li>
-        }
-    </ul>
+@if (true)
+{
+    <p>Test</p>
+    //test
+    @:Test
+}
+
+@*Test*@
+
+@StringManipulation.MakeFirstLetterUpper("krasi")@(Model.Message)
+
+<partial name="_CurrentYearPartial" model="@Model.Year"/>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <h2 greeting-string="Hello From Greeting String">@Model.Message</h2>
+    <h3 greeting-string="What happened!"></h3>
+    <h5>Woot</h5>
+    <p>@Model.Year</p>
+</div>
+<ul>
+    @foreach (var item in Model.Names)
+    {
+        <li>@item</li>
+    }
+</ul>
+
+@section Links{
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="https://google.com">Google</a>
+    </li>
+}
+

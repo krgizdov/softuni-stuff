@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MyFirstAspNetCoreApp.Services;
 using MyFirstAspNetCoreApp.ViewModels;
 using MyFirstAspNetCoreApp.ViewModels.Home;
 
@@ -14,10 +15,12 @@ namespace MyFirstAspNetCoreApp.Controllers
     public class HomeController : Controller
     {
         private readonly IConfiguration configuration;
+        private readonly IStringManipulation manipulation;
 
-        public HomeController(IConfiguration configuration)
+        public HomeController(IConfiguration configuration, IStringManipulation manipulation)
         {
             this.configuration = configuration;
+            this.manipulation = manipulation;
         }
 
         public IActionResult Index()
@@ -28,6 +31,8 @@ namespace MyFirstAspNetCoreApp.Controllers
                 Year = DateTime.UtcNow.Year,
                 Names = new List<string> { "Krasi", "Jenny" }
             };
+
+            viewModel.Message = manipulation.MakeFirstLetterUpper(viewModel.Message);
             return View(viewModel);
         }
 
