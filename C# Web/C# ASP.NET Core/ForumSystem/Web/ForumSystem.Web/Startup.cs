@@ -10,7 +10,6 @@
     using ForumSystem.Data.Seeding;
     using ForumSystem.Services.Data;
     using ForumSystem.Services.Mapping;
-    using ForumSystem.Services.Messaging;
     using ForumSystem.Web.ViewModels;
 
     using Microsoft.AspNetCore.Builder;
@@ -63,8 +62,9 @@
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
-            services.AddTransient<IEmailSender>(x => new SendGridEmailSender(""));
+            /// services.AddTransient<IEmailSender>(x => new SendGridEmailSender(""));
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<ICategoriesService, CategoriesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -104,6 +104,7 @@
                 endpoints =>
                     {
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                        endpoints.MapControllerRoute("forumCategory", "f/{name:minlength(3)}", new { controller = "Categories", action = "ByName" });
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();
                     });
